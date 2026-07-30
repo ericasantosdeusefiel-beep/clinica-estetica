@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORA Estética Avançada — Resultados reais, cuidado humano</title>
+<meta name="description" content="Clínica de estética avançada em São Paulo. Tratamentos faciais e corporais com resultado comprovado e acompanhamento humanizado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F8F4EE;
+    --blush:#F1E3D8;
+    --sage-pale:#E9EFE9;
+    --sage:#7F9C8B;
+    --pine:#48644F;
+    --pine-deep:#33463B;
+    --terracotta:#CD9A75;
+    --terracotta-deep:#A9714E;
+    --ink:#3A4239;
+    --white:#FFFFFF;
+    --shadow: 0 30px 60px -30px rgba(72,100,79,0.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces', serif;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    font-weight:700; color:var(--terracotta-deep); display:flex; align-items:center; gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:28px; height:1px; background:var(--terracotta-deep);}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 30px; border-radius:100px; font-weight:700; font-size:15px;
+    border:1px solid transparent; cursor:pointer; transition:transform .35s ease, box-shadow .35s ease, background .35s ease;
+    white-space:nowrap;
+  }
+  .btn-gold{background:var(--terracotta); color:var(--pine-deep);}
+  .btn-gold:hover{transform:translateY(-3px); box-shadow:0 16px 30px -10px rgba(205,154,117,.55);}
+  .btn-line{border-color:rgba(58,66,57,.28); color:var(--pine);}
+  .btn-line:hover{background:rgba(72,100,79,.07); transform:translateY(-3px);}
+  .btn-line-dark{border-color:rgba(58,66,57,.25); color:var(--pine);}
+  .btn-line-dark:hover{background:rgba(72,100,79,.07); transform:translateY(-3px);}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:26px 0; transition:padding .4s ease, background .4s ease, box-shadow .4s ease;
+  }
+  header.scrolled{padding:14px 0; background:rgba(248,244,238,.92); backdrop-filter:blur(10px); box-shadow:0 10px 30px -20px rgba(58,66,57,.25);}
+  nav{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Fraunces', serif; font-size:24px; font-weight:600; color:var(--pine); letter-spacing:.02em;}
+  .logo span{color:var(--terracotta-deep);}
+  .nav-links{display:flex; gap:34px; list-style:none;}
+  .nav-links a{color:var(--ink); opacity:.82; font-size:14.5px; font-weight:600; transition:color .25s, opacity .25s;}
+  .nav-links a:hover{color:var(--terracotta-deep); opacity:1;}
+  .nav-cta{display:flex; align-items:center; gap:18px;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:26px; height:2px; background:var(--pine);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; background:linear-gradient(160deg, var(--sage-pale) 0%, var(--blush) 100%);
+    display:grid; grid-template-columns:1fr 1fr; align-items:center;
+    min-height:100vh; padding-top:110px; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 12% 15%, rgba(205,154,117,.20), transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(127,156,139,.28), transparent 50%);
+    pointer-events:none;
+  }
+  .hero-text{position:relative; z-index:2; padding:40px 0 60px 0;}
+  .hero-text .wrap{padding-left:32px; padding-right:0;}
+  .hero-text h1{
+    font-size:clamp(38px, 4.6vw, 64px); color:var(--pine); font-weight:450;
+    line-height:1.08; margin-bottom:26px; max-width:560px;
+  }
+  .hero-text h1 em{font-style:italic; color:var(--terracotta-deep);}
+  .hero-text p{color:var(--ink); opacity:.78; font-size:17.5px; max-width:460px; margin-bottom:38px;}
+  .hero-actions{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
+  .hero-note{color:var(--ink); opacity:.55; font-size:13.5px; margin-top:26px; max-width:420px;}
+
+  .hero-visual{position:relative; z-index:2; height:100%; display:flex; align-items:flex-end; justify-content:center; padding:0 40px;}
+  .arch{
+    width:100%; max-width:460px; aspect-ratio:3/4;
+    border-radius:280px 280px 18px 18px;
+    background-size:cover; background-position:center;
+    background-color:var(--sage);
+    box-shadow:var(--shadow);
+    position:relative;
+    border:10px solid rgba(255,255,255,.5);
+  }
+  .hero-visual .arch{ margin-bottom:-4px; }
+  .floating-card{
+    position:absolute; left:-30px; bottom:60px; background:var(--white);
+    border-radius:16px; padding:18px 22px; box-shadow:0 20px 40px -18px rgba(58,66,57,.28);
+    display:flex; align-items:center; gap:14px; max-width:230px;
+  }
+  .floating-card .num{font-family:'Fraunces',serif; font-size:26px; color:var(--pine); font-weight:600;}
+  .floating-card .lbl{font-size:12.5px; color:var(--sage); font-weight:700; line-height:1.3;}
+
+  /* ===== TRUST STRIP ===== */
+  .trust{background:var(--blush); padding:26px 0; border-top:1px solid rgba(58,66,57,.08); border-bottom:1px solid rgba(58,66,57,.08);}
+  .trust .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;}
+  .trust-item{display:flex; align-items:baseline; gap:10px; color:var(--ink);}
+  .trust-item b{font-family:'Fraunces',serif; font-size:26px; color:var(--terracotta-deep); font-weight:600;}
+  .trust-item span{font-size:13px; letter-spacing:.03em; opacity:.75;}
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:120px 0;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head h2{font-size:clamp(30px,3.4vw,44px); font-weight:450; color:var(--pine); line-height:1.15;}
+  .section-head p{color:var(--sage); font-size:16.5px; margin-top:18px;}
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--white);}
+  .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; align-items:center;}
+  .about-photo{
+    border-radius:20px 200px 20px 20px; aspect-ratio:4/5; background-size:cover; background-position:center;
+    background-color:var(--sage-pale); box-shadow:var(--shadow);
+  }
+  .about-copy h2{margin-bottom:22px;}
+  .about-copy p{color:#5B655C; margin-bottom:18px; font-size:16px;}
+  .about-list{list-style:none; margin-top:30px; display:grid; gap:16px;}
+  .about-list li{display:flex; gap:14px; align-items:flex-start; font-size:15px; color:var(--ink);}
+  .about-list .dot{min-width:8px; height:8px; border-radius:50%; background:var(--terracotta); margin-top:8px;}
+
+  /* ===== TREATMENTS ===== */
+  .treatments{background:var(--sage-pale);}
+  .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  .t-card{
+    background:var(--white); border-radius:20px; overflow:hidden; box-shadow:0 22px 45px -32px rgba(58,66,57,.28);
+    transition:transform .4s ease, box-shadow .4s ease;
+  }
+  .t-card:hover{transform:translateY(-8px); box-shadow:0 30px 55px -28px rgba(58,66,57,.32);}
+  .t-photo{height:210px; background-size:cover; background-position:center; background-color:var(--sage); border-radius:20px 90px 0 0; position:relative;}
+  .t-tag{position:absolute; bottom:14px; left:14px; background:rgba(51,70,59,.82); color:var(--blush); font-size:11.5px; font-weight:700; letter-spacing:.05em; padding:7px 13px; border-radius:100px; text-transform:uppercase;}
+  .t-body{padding:26px 26px 30px;}
+  .t-body h3{font-size:21px; color:var(--pine); font-weight:600; margin-bottom:10px;}
+  .t-body p{font-size:14.5px; color:#5F6A60; margin-bottom:16px;}
+  .t-result{display:flex; gap:10px; align-items:flex-start; background:var(--sage-pale); border-radius:12px; padding:12px 14px; font-size:13.5px; color:var(--pine); font-weight:600;}
+
+  /* ===== SPECIALIST ===== */
+  .specialist{background:linear-gradient(160deg, var(--blush) 0%, var(--sage-pale) 100%); color:var(--ink); position:relative; overflow:hidden;}
+  .specialist::before{content:""; position:absolute; inset:0; background:radial-gradient(circle at 90% 10%, rgba(205,154,117,.16), transparent 50%);}
+  .sp-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:80px; align-items:center; position:relative; z-index:2;}
+  .sp-photo{
+    aspect-ratio:3/4; border-radius:220px 220px 20px 20px; background-size:cover; background-position:center top;
+    background-color:var(--sage); box-shadow:var(--shadow); border:8px solid rgba(255,255,255,.7);
+  }
+  .sp-copy .eyebrow{color:var(--terracotta-deep);}
+  .sp-copy .eyebrow::before{background:var(--terracotta-deep);}
+  .sp-quote{font-family:'Fraunces',serif; font-style:italic; font-size:clamp(22px,2.4vw,30px); font-weight:450; line-height:1.4; color:var(--pine); margin-bottom:28px;}
+  .sp-name{font-size:19px; font-weight:700; color:var(--terracotta-deep);}
+  .sp-role{font-size:13.5px; color:var(--ink); opacity:.62; margin-bottom:22px;}
+  .sp-copy p.desc{color:var(--ink); opacity:.8; font-size:15.5px; margin-bottom:16px;}
+  .sp-creds{display:flex; gap:28px; margin-top:30px; flex-wrap:wrap;}
+  .sp-creds div{border-left:2px solid var(--terracotta); padding-left:14px;}
+  .sp-creds b{display:block; font-family:'Fraunces',serif; font-size:22px; color:var(--pine); font-weight:600;}
+  .sp-creds span{font-size:12.5px; color:var(--ink); opacity:.6;}
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials{background:var(--white);}
+  .test-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:30px;}
+  .test-card{background:var(--sage-pale); border-radius:18px; padding:32px 28px;}
+  .test-stars{color:var(--terracotta-deep); font-size:15px; margin-bottom:16px; letter-spacing:2px;}
+  .test-card p{font-size:15px; color:var(--ink); margin-bottom:22px;}
+  .test-who{display:flex; align-items:center; gap:12px;}
+  .test-avatar{width:44px; height:44px; border-radius:50%; background-size:cover; background-position:center; background-color:var(--sage);}
+  .test-who b{font-size:14px; display:block;}
+  .test-who span{font-size:12.5px; color:var(--sage);}
+
+  /* ===== CONTACT ===== */
+  .contact{background:var(--blush);}
+  .c-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
+  .c-info h2{margin-bottom:20px;}
+  .c-info p{color:#5B655C; font-size:16px; margin-bottom:34px; max-width:420px;}
+  .c-item{display:flex; gap:16px; margin-bottom:24px;}
+  .c-icon{width:44px; height:44px; border-radius:50%; background:var(--pine); color:var(--blush); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .c-item b{display:block; font-size:14.5px; color:var(--pine); margin-bottom:3px;}
+  .c-item span{font-size:14px; color:#5F6A60;}
+  .c-social{display:flex; gap:14px; margin-top:34px;}
+  .c-social a{width:42px; height:42px; border-radius:50%; border:1px solid rgba(58,66,57,.22); display:flex; align-items:center; justify-content:center; transition:background .25s, color .25s;}
+  .c-social a:hover{background:var(--pine); color:var(--white);}
+
+  form{background:var(--white); border-radius:22px; padding:44px; box-shadow:var(--shadow);}
+  .f-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  .f-field{display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
+  .f-field label{font-size:13px; font-weight:700; color:var(--pine);}
+  .f-field input, .f-field select, .f-field textarea{
+    border:1px solid #E4DCD2; border-radius:10px; padding:13px 15px; font-family:'Manrope',sans-serif;
+    font-size:14.5px; background:var(--cream); color:var(--ink); transition:border-color .25s;
+  }
+  .f-field input:focus, .f-field select:focus, .f-field textarea:focus{outline:none; border-color:var(--terracotta);}
+  form .btn-gold{width:100%; justify-content:center; margin-top:6px;}
+  .f-note{font-size:12.5px; color:var(--sage); text-align:center; margin-top:14px;}
+
+  /* ===== MAP ===== */
+  .map-section{padding:0; position:relative;}
+  .map-wrap{position:relative; height:480px;}
+  .map-wrap iframe{width:100%; height:100%; border:0; filter:grayscale(.1) contrast(1.02) brightness(1.02);}
+  .map-card{
+    position:absolute; top:40px; left:40px; background:var(--white); border-radius:18px; padding:26px 30px;
+    box-shadow:var(--shadow); max-width:290px; z-index:5;
+  }
+  .map-card .eyebrow{margin-bottom:12px;}
+  .map-card h3{font-family:'Fraunces',serif; font-size:20px; color:var(--pine); margin-bottom:10px; font-weight:600;}
+  .map-card p{font-size:14px; color:#5F6A60; margin-bottom:16px;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--pine-deep); color:rgba(255,255,255,.72); padding:70px 0 30px;}
+  .f-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:60px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,.12);}
+  .f-logo{font-family:'Fraunces',serif; font-size:24px; color:var(--white); margin-bottom:16px; font-weight:600;}
+  .f-grid p{font-size:14px; line-height:1.7; max-width:320px;}
+  .f-col h4{color:var(--white); font-size:14px; margin-bottom:18px; letter-spacing:.04em; text-transform:uppercase;}
+  .f-col ul{list-style:none; display:grid; gap:11px;}
+  .f-col a{font-size:14px; transition:color .25s;}
+  .f-col a:hover{color:var(--terracotta);}
+  .f-bottom{display:flex; justify-content:space-between; padding-top:26px; font-size:12.5px; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width: 980px){
+    .nav-links, .nav-cta .btn-line{display:none;}
+    .burger{display:flex;}
+    .hero{grid-template-columns:1fr; min-height:auto; padding-bottom:60px;}
+    .hero-visual{order:-1; padding:20px 24px 0;}
+    .hero-text .wrap{padding-left:24px;}
+    .floating-card{left:14px;}
+    .about-grid, .sp-grid, .c-grid{grid-template-columns:1fr; gap:40px;}
+    .sp-photo{max-width:340px; margin:0 auto;}
+    .t-grid, .test-grid{grid-template-columns:1fr;}
+    .f-row{grid-template-columns:1fr;}
+    .f-grid{grid-template-columns:1fr; gap:34px;}
+    section{padding:80px 0;}
+    .map-card{left:20px; right:20px; max-width:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="#top" class="logo">CORA<span>·</span>Estética</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">A clínica</a></li>
+      <li><a href="#tratamentos">Tratamentos</a></li>
+      <li><a href="#especialista">Especialista</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-line">Agendar avaliação</a>
+      <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-text">
+    <div class="wrap">
+      <p class="eyebrow">Clínica de estética avançada</p>
+      <h1>Cuidado técnico e <em>olhar humano</em> para a sua pele.</h1>
+      <p>Protocolos personalizados, equipamentos de última geração e uma equipe que acompanha cada etapa do seu resultado — não só a sessão de hoje.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn btn-gold">Agendar avaliação gratuita →</a>
+        <a href="#tratamentos" class="btn btn-line">Ver tratamentos</a>
+      </div>
+      <p class="hero-note">Avaliação facial e corporal sem custo para novas pacientes, com plano de tratamento individualizado.</p>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="arch reveal in" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=80');">
+      <div class="floating-card">
+        <div class="num">9,4</div>
+        <div class="lbl">nota média das pacientes<br>nos últimos 12 meses</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><b>12</b><span>anos de clínica</span></div>
+    <div class="trust-item"><b>3.200+</b><span>procedimentos realizados</span></div>
+    <div class="trust-item"><b>97%</b><span>indicariam a clínica</span></div>
+    <div class="trust-item"><b>4</b><span>especialistas certificadas</span></div>
+  </div>
+</div>
+
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal" style="background-image:url('./imagens-clinica/a-clinica.jpeg');"></div>
+    <div class="about-copy reveal">
+      <p class="eyebrow">A clínica</p>
+      <h2>Um espaço pensado para deixar você à vontade em cada etapa.</h2>
+      <p>A CORA nasceu para ser diferente das clínicas de estética que tratam cada pessoa como mais um horário na agenda. Aqui, cada protocolo começa com uma escuta real: sua rotina, seu histórico de pele e o resultado que você espera enxergar no espelho.</p>
+      <p>Trabalhamos com tecnologia de ponta — laser, radiofrequência, ultrassom microfocado e bioestimuladores — sempre combinada a uma avaliação clínica cuidadosa, feita por profissionais registradas e em constante atualização.</p>
+      <ul class="about-list">
+        <li><span class="dot"></span>Ambiente climatizado, silencioso e com biossegurança auditada mensalmente</li>
+        <li><span class="dot"></span>Planos de tratamento fotografados e acompanhados sessão a sessão</li>
+        <li><span class="dot"></span>Equipamentos com registro na Anvisa e manutenção calibrada</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="treatments" id="tratamentos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Tratamentos</p>
+      <h2>Protocolos com foco em resultado — não em promessa.</h2>
+      <p>Cada tratamento é entregue com metas claras de evolução, revisadas a cada retorno.</p>
+    </div>
+    <div class="t-grid">
+
+      <div class="t-card reveal">
+        <div class="t-photo" style="background-image:url('./imagens-clinica/limpeza-de-pele-profunda.jpg');">
+          <span class="t-tag">Facial</span>
+        </div>
+        <div class="t-body">
+          <h3>Limpeza de pele profunda</h3>
+          <p>Higienização, esfoliação e extração guiadas por análise de pele, finalizadas com máscara específica para seu tipo de pele.</p>
+          <div class="t-result">↳ Textura visivelmente mais uniforme já na 1ª sessão</div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="t-photo" style="background-image:url('./imagens-clinica/bioestimulador-de-colágeno.jpg');">
+          <span class="t-tag">Facial</span>
+        </div>
+        <div class="t-body">
+          <h3>Bioestimulador de colágeno</h3>
+          <p>Estímulo da produção natural de colágeno para firmeza e sustentação facial, com resultado progressivo e natural.</p>
+          <div class="t-result">↳ Firmeza perceptível entre 30 e 60 dias após aplicação</div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="t-photo" style="background-image:url('./imagens-clinica/toxina-botulínica.jpg');">
+          <span class="t-tag">Facial</span>
+        </div>
+        <div class="t-body">
+          <h3>Toxina botulínica</h3>
+          <p>Aplicação técnica para suavização de linhas de expressão, respeitando a mobilidade natural do rosto.</p>
+          <div class="t-result">↳ Efeito completo em até 14 dias, com duração de 4 a 6 meses</div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="t-photo" style="background-image:url('./imagens-clinica/drenagem-linfática.jpg');">
+          <span class="t-tag">Corporal</span>
+        </div>
+        <div class="t-body">
+          <h3>Drenagem linfática</h3>
+          <p>Manobras específicas para redução de retenção de líquidos, indicada em protocolos pós-operatórios e de bem-estar.</p>
+          <div class="t-result">↳ Redução de inchaço perceptível já na 1ª sessão</div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="t-photo" style="background-image:url('./imagens-clinica/criolipólise.jpg');">
+          <span class="t-tag">Corporal</span>
+        </div>
+        <div class="t-body">
+          <h3>Criolipólise</h3>
+          <p>Redução localizada de gordura por resfriamento controlado, com avaliação de medidas antes e depois de cada ciclo.</p>
+          <div class="t-result">↳ Redução média de 20% da gordura tratada por sessão</div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="t-photo" style="background-image:url('./imagens-clinica/peeling-de-diamante.jpg');">
+          <span class="t-tag">Facial</span>
+        </div>
+        <div class="t-body">
+          <h3>Peeling de diamante</h3>
+          <p>Renovação celular por microesfoliação mecânica, indicado para manchas, poros dilatados e textura irregular.</p>
+          <div class="t-result">↳ Uniformização do tom de pele em 3 a 4 sessões</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="specialist" id="especialista">
+  <div class="wrap sp-grid">
+    <div class="sp-photo reveal" style="background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=80');"></div>
+    <div class="sp-copy reveal">
+      <p class="eyebrow">Quem cuida de você</p>
+      <p class="sp-quote">"Antes de pensar em qual aparelho usar, eu quero entender por que você chegou até aqui."</p>
+      <div class="sp-name">Marina Duarte</div>
+      <div class="sp-role">Biomédica Esteta · CRBM 1 — 34281 · Fundadora da CORA</div>
+      <p class="desc">Há 12 anos na estética avançada, Marina construiu a CORA depois de perceber o quanto pacientes chegavam desconfiadas, carregando frustrações de tratamentos anteriores que prometiam demais e explicavam de menos.</p>
+      <p class="desc">Seu método parte de três perguntas simples: o que incomoda você, o que já foi tentado, e o que é realista esperar. É isso que orienta cada protocolo — com prazos, cuidados e limites explicados sem termos técnicos difíceis.</p>
+      <div class="sp-creds">
+        <div><b>12 anos</b><span>de atuação clínica</span></div>
+        <div><b>+40h</b><span>de formação contínua/ano</span></div>
+        <div><b>1:1</b><span>acompanhamento por paciente</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="depoimentos">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <p class="eyebrow" style="justify-content:center;">Depoimentos</p>
+      <h2>Quem já passou pela CORA</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p>"Fui pela primeira vez sem saber exatamente o que precisava, e a Marina montou um plano que fazia sentido pro meu bolso e pra minha rotina. Sem empurrar pacote nenhum."</p>
+        <div class="test-who">
+          <div class="test-avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80');"></div>
+          <div><b>Renata A.</b><span>Limpeza de pele + peeling</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p>"O que me conquistou foi o acompanhamento com fotos a cada retorno. Eu conseguia ver a evolução de verdade, não só sentir 'que parece melhor'."</p>
+        <div class="test-who">
+          <div class="test-avatar" style="background-image:url('https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=200&q=80');"></div>
+          <div><b>Camila S.</b><span>Bioestimulador de colágeno</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p>"Clínica extremamente organizada e transparente sobre prazos. Não prometeram milagre, prometeram processo — e cumpriram."</p>
+        <div class="test-who">
+          <div class="test-avatar" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80');"></div>
+          <div><b>Juliana P.</b><span>Criolipólise</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap c-grid">
+    <div class="c-info reveal">
+      <p class="eyebrow">Contato</p>
+      <h2>Agende sua avaliação</h2>
+      <p>Preencha o formulário e nossa equipe retorna em até 1 dia útil para confirmar o melhor horário para sua avaliação gratuita.</p>
+
+      <div class="c-item">
+        <div class="c-icon">✆</div>
+        <div><b>WhatsApp / Telefone</b><span>(11) 4002-8922</span></div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon">✉</div>
+        <div><b>E-mail</b><span>contato@coraestetica.com.br</span></div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon">⌂</div>
+        <div><b>Endereço</b><span>Av. Paulista, 1000 — Bela Vista, São Paulo - SP</span></div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon">◷</div>
+        <div><b>Horário</b><span>Seg. a sáb., 9h às 19h</span></div>
+      </div>
+
+      <div class="c-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="WhatsApp">WA</a>
+        <a href="#" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+
+    <form class="reveal" id="contactForm">
+      <div class="f-row">
+        <div class="f-field">
+          <label for="nome">Nome completo</label>
+          <input id="nome" type="text" placeholder="Seu nome" required>
+        </div>
+        <div class="f-field">
+          <label for="whats">WhatsApp</label>
+          <input id="whats" type="tel" placeholder="(11) 90000-0000" required>
+        </div>
+      </div>
+      <div class="f-field">
+        <label for="tratamento">Tratamento de interesse</label>
+        <select id="tratamento">
+          <option>Ainda não sei — quero uma avaliação</option>
+          <option>Limpeza de pele profunda</option>
+          <option>Bioestimulador de colágeno</option>
+          <option>Toxina botulínica</option>
+          <option>Drenagem linfática</option>
+          <option>Criolipólise</option>
+          <option>Peeling de diamante</option>
+        </select>
+      </div>
+      <div class="f-field">
+        <label for="msg">Conte um pouco o que gostaria de tratar</label>
+        <textarea id="msg" rows="3" placeholder="Ex: linhas de expressão na testa, gordura localizada na região do abdômen..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold">Solicitar avaliação gratuita →</button>
+      <p class="f-note">Seus dados são usados apenas para retorno da clínica.</p>
+    </form>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="map-wrap">
+    <div class="map-card reveal">
+      <p class="eyebrow">Localização</p>
+      <h3>Fácil acesso, no coração da Bela Vista</h3>
+      <p>A duas quadras do metrô Trianon-MASP, com estacionamento conveniado.</p>
+      <a href="https://www.google.com/maps?q=Av.+Paulista,+1000,+São+Paulo" target="_blank" rel="noopener" class="btn btn-line-dark">Ver rotas →</a>
+    </div>
+    <iframe
+      src="https://www.google.com/maps?q=Av.+Paulista,+1000,+São+Paulo+-+SP&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="f-logo">CORA · Estética</div>
+        <p>Clínica de estética avançada em São Paulo, com protocolos personalizados e acompanhamento humanizado em cada etapa do tratamento.</p>
+      </div>
+      <div class="f-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">A clínica</a></li>
+          <li><a href="#tratamentos">Tratamentos</a></li>
+          <li><a href="#especialista">Especialista</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>(11) 4002-8922</li>
+          <li>contato@coraestetica.com.br</li>
+          <li>Av. Paulista, 1000 — SP</li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 CORA Estética Avançada. Todos os direitos reservados.</span>
+      <span>CNPJ 00.000.000/0001-00 · Responsável técnica: Marina Duarte — CRBM 1 34281</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    btn.textContent = 'Recebemos sua solicitação ✓';
+    btn.style.opacity = '.85';
+    setTimeout(() => { btn.textContent = original; btn.style.opacity = '1'; this.reset(); }, 3200);
+  });
+</script>
+</body>
+</html>
